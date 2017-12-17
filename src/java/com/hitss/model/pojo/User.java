@@ -15,7 +15,9 @@ public class User  implements Serializable {
     public User() {
     }
 
-    public User(String usrName, String usrLastname, String usrUsername, String usrPassword, Date usrCreationdate, String usrEtaid) {
+    public User(String usrName, String usrLastname, 
+            String usrUsername, String usrPassword, 
+            Date usrCreationdate, String usrEtaid) {
        this.usrName = usrName;
        this.usrLastname = usrLastname;
        this.usrUsername = usrUsername;
