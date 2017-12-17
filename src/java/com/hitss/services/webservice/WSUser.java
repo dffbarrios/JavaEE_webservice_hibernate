@@ -28,7 +28,7 @@ public class WSUser {
             @WebParam(name = "password") String password, 
             @WebParam(name = "status") String status) {
         User user; UserDaoImpl userDaoImpl = new UserDaoImpl();
-        if(!userDaoImpl.loginUser(currentUser, currentPass).isEmpty()){
+        if(userDaoImpl.loginUser(currentUser, currentPass)!=null){
             if(!userDaoImpl.findUserByName(username).isEmpty()){
                 return "Imposible finalizar operación: "
                         + " El usuario " + username + " ya existe";
@@ -50,7 +50,7 @@ public class WSUser {
             @WebParam(name = "lastname") String lastname, 
             @WebParam(name = "password") String password) {
         UserDaoImpl userDaoImpl = new UserDaoImpl();
-        if(!userDaoImpl.loginUser(currentUser, currentPass).isEmpty()){
+        if(userDaoImpl.loginUser(currentUser, currentPass)!=null){
             User user = userDaoImpl.findUserById(idUser).get(0);        
             if(user!=null){
                 user.setUsrName(name);
@@ -67,7 +67,7 @@ public class WSUser {
             @WebParam(name = "currentPass") String currentPass,
             @WebParam(name = "idUser") int idUser) {
        UserDaoImpl userDaoImpl=new UserDaoImpl();
-        if(!userDaoImpl.loginUser(currentUser, currentPass).isEmpty()){
+        if(userDaoImpl.loginUser(currentUser, currentPass)!=null){
              User user = userDaoImpl.findUserById(idUser).get(0);
             return
                ((user!=null)?userDaoImpl.deleteUser(user):"El usuario a dar de baja no existe");
@@ -80,7 +80,7 @@ public class WSUser {
             @WebParam(name = "currentPass") String currentPass,
             @WebParam(name = "username") String username) {
         UserDaoImpl userDaoImpl = new UserDaoImpl();
-        if(!userDaoImpl.loginUser(currentUser, currentPass).isEmpty()){
+        if(userDaoImpl.loginUser(currentUser, currentPass)!=null){
             return userDaoImpl.findUserByName(username);
         }else return null;       
     }
@@ -91,7 +91,7 @@ public class WSUser {
         @WebParam(name = "currentPass") String currentPass)
     {
        UserDaoImpl userDaoImpl = new UserDaoImpl();
-        if(!userDaoImpl.loginUser(currentUser, currentPass).isEmpty()){
+        if(userDaoImpl.loginUser(currentUser, currentPass)!=null){
              List<User> list = userDaoImpl.findAllUser();
             return list;
         }else return null;      
