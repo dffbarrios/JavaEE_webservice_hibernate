@@ -3,9 +3,9 @@ import com.hitss.model.pojo.User;
 import java.util.List;
 
 public interface UserDao {
-    void newUser();
-    void updateUser();
-    void deleteUser();
+    void insertUser(User user);
+    void updateUser(User user);
+    void deleteUser(User user);
     User findUserById(int idUser);
     User findUserByName(String username);
     List<User> findAllUser();    
