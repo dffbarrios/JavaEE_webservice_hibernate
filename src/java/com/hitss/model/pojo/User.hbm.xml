@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hitss.model.pojo.User" table="user" catalog="bd_hitss_ws" optimistic-lock="version">
+        <id name="usrId" type="java.lang.Integer">
+            <column name="usr_id" />
+            <generator class="identity" />
+        </id>
+        <property name="usrName" type="string">
+            <column name="usr_name" length="50" not-null="true" />
+        </property>
+        <property name="usrLastname" type="string">
+            <column name="usr_lastname" length="50" not-null="true" />
+        </property>
+        <property name="usrUsername" type="string">
+            <column name="usr_username" length="30" not-null="true" />
+        </property>
+        <property name="usrPassword" type="string">
+            <column name="usr_password" length="254" not-null="true" />
+        </property>
+        <property name="usrCreationdate" type="date">
+            <column name="usr_creationdate" length="10" not-null="true" />
+        </property>
+        <property name="usrEtaid" type="string">
+            <column name="usr_etaid" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
