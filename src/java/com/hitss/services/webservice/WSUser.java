@@ -65,12 +65,15 @@ public class WSUser {
     public String deleteUser(
             @WebParam(name = "currentUser") String currentUser, 
             @WebParam(name = "currentPass") String currentPass,
-            @WebParam(name = "idUser") int idUser) {
+            @WebParam(name = "username") String username) {
        UserDaoImpl userDaoImpl=new UserDaoImpl();
         if(userDaoImpl.loginUser(currentUser, currentPass)!=null){
-             User user = userDaoImpl.findUserById(idUser).get(0);
-            return
-               ((user!=null)?userDaoImpl.deleteUser(user):"El usuario a dar de baja no existe");
+             if(userDaoImpl.findUserByName(username)!=null){
+                 if(!userDaoImpl.findUserByName(username).isEmpty()){
+                     userDaoImpl.deleteUser(userDaoImpl.findUserByName(username).get(0));
+                     return "Usuario Eliminado";
+                 }else return "El usuario a dar de baja no existe";
+             } return "El usuario a dar de baja no existe";
         }else return "No esta autorizado para realizar esta operación";     
     }
 
