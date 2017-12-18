@@ -55,7 +55,12 @@ public class UserDaoImpl
         try{
             hibernateUtil.getSession().update(user);
             hibernateUtil.getTransaction().commit();
-            msg = "Usuario actualizado";
+            msg = "~ Usuario actualizado ~ " 
+                    + "ID Usuario: " + user.getUsrId() + " | "
+                    + "Nombres   : " + user.getUsrName() + " | "
+                    + "Apellidos : " + user.getUsrLastname()+ " | "
+                    + "Fecha Creación :" + user.getUsrCreationdate().toString() + " | "
+                    + "Estado    : " + user.getUsrEtaid();
         }catch(Exception Ex){
             msg="Error actualizando usuario";
             hibernateUtil.tryRollBack();

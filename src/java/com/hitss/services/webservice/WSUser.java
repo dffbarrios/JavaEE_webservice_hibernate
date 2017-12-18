@@ -45,19 +45,21 @@ public class WSUser {
     public String updateUser(
             @WebParam(name = "currentUser") String currentUser, 
             @WebParam(name = "currentPass") String currentPass,
-            @WebParam(name = "idUser") int idUser, 
+            @WebParam(name = "username") String username, 
             @WebParam(name = "name") String name, 
             @WebParam(name = "lastname") String lastname, 
             @WebParam(name = "password") String password) {
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
+        UserDaoImpl userDaoImpl = new UserDaoImpl();       
         if(userDaoImpl.loginUser(currentUser, currentPass)!=null){
-            User user = userDaoImpl.findUserById(idUser).get(0);        
-            if(user!=null){
-                user.setUsrName(name);
-                user.setUsrLastname(lastname);
-                user.setUsrPassword(password);
-                return userDaoImpl.updateUser(user);
-            }else return "El usuario " + name + " " + lastname + " no existe";
+            if(userDaoImpl.findUserByName(username)!=null){
+                if(!userDaoImpl.findUserByName(username).isEmpty()){
+                    User user = userDaoImpl.findUserByName(username).get(0);
+                    user.setUsrName(name);
+                    user.setUsrLastname(lastname);
+                    user.setUsrPassword(password);
+                    return userDaoImpl.updateUser(user);
+                }else return "El usuario " + username + " no existe";
+            } else return "El usuario " + username + " no existe";      
         }else return "No esta autorizado para realizar esta operación";
     }
 
